@@ -20,17 +20,68 @@ You must be reachable on the given email address. If you do not wish to use
 your real name for whatever reason, using a nickname or pseudonym is perfectly
 acceptable.
 
+Team Membership
+---------------
+
+Contributing useful commits via pull requests will at some point get you
+invited to the Syncthing core team. This team gives you push
+access to most repositories, subject to the guidelines below.
+
+The Syncthing maintainers team has the same access
+permissions, the added responsibility of reviewing major changes, and the
+ability to invite members into the core team.
+
+Code Review
+-----------
+
+Commits will generally fall into one of the three categories below, with
+different requirements on review.
+
+Trivial:
+  A small change or refactor that is obviously correct. These may be pushed
+  without review by any member of the core team. Examples:
+  `removing dead code <https://github.com/syncthing/syncthing/commits/master>`__,
+  `updating values <https://github.com/syncthing/syncthing/commit/2aa028facb7ccbe48e85c8c444501cc3fb38ef24>`__.
+
+Minor:
+  A new feature, bugfix or refactoring that may need extra eyes on it to weed
+  out mistakes, but is architecturally simple or at least uncontroversial.
+  Minor changes must go through a pull request and can be merged on approval
+  by any other developer on the core or maintainers team. Tests must pass.
+  Examples: `adding caching <https://github.com/syncthing/syncthing/pull/2432/files>`__,
+  `fixing a small bug <https://github.com/syncthing/syncthing/pull/2406/files>`__.
+
+Major:
+  A complex new feature or bugfix, a large refactoring, or a change to the
+  underlying architecture of things. A major change must be reviewed by a
+  member of the *maintainers* team. Tests must pass.
+
+The categorization is inherently subjective; we recommend erring on the side
+of caution - if you are not sure whether a change is *trivial* or merely
+*minor*, it's probably minor.
+
+First time contributions from new developers are always major.
+
 Coding Style
 ------------
+
+General
+~~~~~~~
+
+- All text files use Unix line endings. The git settings already present in
+  the repository attempts to enforce this.
+
+- When making changes, follow the brace and parenthesis style of the
+  surrounding code.
+
+Go Specific
+~~~~~~~~~~~
 
 - Follow the conventions laid out in `Effective
   Go <https://golang.org/doc/effective_go.html>`__ as much as makes
   sense. The review guidelines in `Go Code Review Comments
   <https://github.com/golang/go/wiki/CodeReviewComments>`__ should generally
   be followed.
-
-- All text files use Unix line endings. The git settings already present in
-  the repository attempts to enforce this.
 
 - Each commit should be ``go fmt`` clean.
 
@@ -42,25 +93,27 @@ Commits
 
 - The commit message subject should be a single short sentence
   describing the change, starting with a capital letter but without
-  ending punctuation.
+  ending punctuation, and prefixed with the package name most affected
+  by the change.
 
 - Commits that resolve an existing issue must include the issue number
   as ``(fixes #123)`` at the end of the commit message subject. A correctly
   formatted commit message looks like this::
 
-    Correctly handle nil error in verbose logging (fixes #1921)
+    lib/dialer: Add env var to disable proxy fallback (fixes #3006)
 
 - If the commit message subject doesn't say it all, one or more paragraphs of
   describing text should be added to the commit message. This should explain
   why the change is made and what it accomplishes.
 
-- A contribution solving a single issue or introducing a single new
-  feature should usually be a single commit based on the current
-  ``master`` branch. You may be asked to "rebase" or "squash" your pull
-  request to make sure this is the case, especially if there have been
-  amendments during review. It's perfectly fine to make review changes
-  as new commits and just push them to the same branch -- but a squash
-  should be performed when the change is good to be merged.
+- When drafting a pull request, please feel free to add commits with
+  corrections and merge from master when necessary. This provides a clear time
+  line with changes and simplifies review. Do not, in general, rebase your
+  commits.
+
+- Pull requests are merged to master using squash merge. The "stream of
+  consciousness" set of commits described in the previous point will be reduced
+  to a single commit at merge time.
 
 Tests
 -----
@@ -101,8 +154,8 @@ Branches
 Tags
 ----
 
-All releases are tagged semver style as ``vx.y.z``. Release tags are
-signed by GPG key 681C3CFCF614F575.
+All releases are tagged semver style as ``vx.y.z``. The maintainer doing the
+release signs the tag using their GPG key.
 
 Licensing
 ---------

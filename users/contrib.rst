@@ -16,40 +16,29 @@ Cross-platform
 ~~~~~~~~~~~~~~
 
 -  https://github.com/syncthing/syncthing-gtk
--  https://github.com/alex2108/syncthing-tray (Tray icon only)
+-  https://github.com/sieren/QSyncthingTray
+-  https://github.com/graboluk/stiko
+-  https://github.com/Martchus/syncthingtray
 
 Android
 ~~~~~~~
 
 -  https://github.com/syncthing/syncthing-android
 
-Ubuntu
-~~~~~~
-
--  https://github.com/icaruseffect/syncthing-ubuntu-indicator
-
 .. _contrib-windows:
 
 Windows
 ~~~~~~~
 
--  https://github.com/iss0/SyncthingTray
-
--  https://github.com/bloones/SyncThingWin (Windows service helper and
-   tray icon)
-
 -  https://github.com/canton7/SyncTrayzor (Windows host for Syncthing.
    Installer, auto-start, built-in browser, tray icon, folder watcher,
    and more)
 
--  https://github.com/kreischweide/metrothing (Windows UI to monitor
-   multiple Syncthing instances through the REST API)
-
 OS X
 ~~~~
 
+-  https://github.com/xor-gate/syncthing-macosx
 -  https://github.com/m0ppers/syncthing-bar (OSX 10.10 only)
--  https://github.com/jerryjacobs/foo-app/releases (OSX 10.9 compatible)
 
 Kindle Touch
 ~~~~~~~~~~~~
@@ -59,26 +48,31 @@ Kindle Touch
 Packages and Bundlings
 ----------------------
 
+Debian / Ubuntu
+~~~~~~~~~~~~~~~
+
+-  **Official packages:** http://apt.syncthing.net/
+-  Syncthing GTK PPA:
+   https://launchpad.net/~nilarimogard/+archive/ubuntu/webupd8/
+   
+CentOS
+~~~~~~~~~~~~~~~
+
+-  **UnOfficial packages:**
+   https://github.com/mlazarov/syncthing-centos
+
 ArchLinux
 ~~~~~~~~~
 
 -  https://www.archlinux.org/packages/?name=syncthing
 -  https://www.archlinux.org/packages/?name=syncthing-gtk
--  https://aur.archlinux.org/packages/syncthing-inotify
+-  https://www.archlinux.org/packages/?name=syncthing-inotify
 -  https://aur.archlinux.org/packages/syncthing-discosrv
 
 arkOS
 ~~~~~
 
 Syncthing is included in arkOS, https://arkos.io/.
-
-Debian / Ubuntu
-~~~~~~~~~~~~~~~
-
--  PPA: https://launchpad.net/~ytvwld/+archive/ubuntu/syncthing
--  Syncthing GTK PPA:
-   https://launchpad.net/~nilarimogard/+archive/ubuntu/webupd8/
--  https://forum.syncthing.net/t/lxle-a-respin-of-lubuntu-now-has-syncthing-included-by-default/1392
 
 Docker
 ~~~~~~
@@ -90,59 +84,64 @@ Docker
 -  https://github.com/joeybaker/docker-syncthing/ A fully baked docker
    container that allows custom config and will keep your settings and
    data past docker image restarts.
+-  https://github.com/djtm/syncthing-docker-scratch (builds docker containers 
+   from scratch base and/or runs the containers in docker or rkt)
+-  https://hub.docker.com/r/funkyfuture/rpi-syncthing/ (Configurable image for
+   the Raspberry Pi)
 
-Fedora
-~~~~~~
-
--  https://github.com/thunderbirdtr/syncthing\_rpm (SRPM, binary
-   packages coming)
-
--  https://copr.fedoraproject.org/coprs/tune2fs/syncthing/ (RPMs, based
-   on https://github.com/thunderbirdtr/syncthing\_rpm)
 
 Gentoo
 ~~~~~~
 
-Syncthing is available from the [timboudreau overlay](http://github.com/timboudreau/gentoo),
-which contains an ebuild for building syncthing from source, installing it and setting it up
-as a service that runs on startup.
-
-Install layman if you don't have it already.  Then run
-
-- layman -a timboudreau
-- eix-update
-- emerge syncthing
-
-Edit /etc/conf.d/syncthing and set the user who will share files to
-your user name.
+- https://packages.gentoo.org/packages/net-p2p/syncthing
 
 FreeBSD
 ~~~~~~~
 
 -  http://www.freshports.org/net/syncthing/
 
+OpenBSD
+~~~~~~~
+
+- http://cvsweb.openbsd.org/cgi-bin/cvsweb/ports/net/syncthing
+
 OpenSUSE
 ~~~~~~~~
 
 -  http://software.opensuse.org/package/syncthing
+-  https://susestudio.com/a/qkdvwb/syncthing
 
-Synology NAS
-~~~~~~~~~~~~
+Synology NAS (DSM)
+~~~~~~~~~~~~~~~~~~
 
 -  http://packages.synocommunity.com/ Add the URL to Package Center in DSM.
    (NOTE: This page is not readable in your web browser. You can browse
    the files at https://synocommunity.com/packages). Numerous CPU
    architectures are supported. SPK's may be older versions, however you
    can execute a Syncthing version upgrade via Web-GUI after
-   installation on Synology device. As Syncthing is marked as beta by
-   the SynoCommunity, you need to enable beta-versions in the settings.
+   installation on Synology device.
 
-QNAP NAS
-~~~~~~~~
+QNAP NAS (QTS)
+~~~~~~~~~~~~~~
 
 -  http://forum.qnap.com/viewtopic.php?f=320&t=97035&start=45#p429896
    QPKG (Qnap Package) Available for ALL models x86, x86\_64, Arm (all
    including new models)
+
+RockStor
+~~~~~~~~
+
+-  Docker Container: http://rockstor.com/docs/docker-based-rock-ons/syncthing.html and registry entry: https://github.com/rockstor/rockon-registry/blob/master/syncthing.json
+
+ASUSTOR NAS (ADM)
+~~~~~~~~~~~~~~~~~
+
+-  ASUSTOR App Central page: http://www.asustor.com/apps/app_detail?id=552
+
+Windows
+~~~~~~~
+
+-  https://github.com/sodacode/Windows-Syncthing-Installer A very minimalist Windows installer.
 
 Integrations
 ------------
@@ -152,19 +151,36 @@ REST API Bindings
 
 -  Ruby: https://github.com/retgoat/syncthing-ruby
 -  Python: https://github.com/blakev/python-syncthing (https://pypi.python.org/pypi/syncthing)
+-  Python: https://github.com/akissa/pysyncthing (https://pypi.python.org/pypi/pysyncthing)
 
 Ports
 ~~~~~
 
--  Swift: https://github.com/dapperstout/pulse-swift
--  Java: https://github.com/dapperstout/pulse-java
--  PHP: https://github.com/cebe/pulse-php-discover (Only Discovery so
-   far)
+-  Swift: https://source.ind.ie/project/pulse-swift/tree/master
 
 Configuration management
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
--  SaltStack: https://bitbucket.org/StartledPhoenix/saltstack-syncthing
 -  Puppet: https://github.com/whefter/puppet-syncthing
+-  Ansible: https://github.com/le9i0nx/ansible-syncthing
+-  Salt: https://github.com/ALinuxNinja/salt-syncthing
 -  Command line interface: https://github.com/syncthing/syncthing-cli
 
+Older, Possibly Unmaintained
+----------------------------
+
+.. note::
+   These projects have not been updated in quite a while. They may still be
+   usable, or they may be in disrepair. If you are the maintainer of one of
+   these and you have revived the project, please update this page
+   accordingly.
+
+-  https://github.com/alex2108/syncthing-tray
+-  https://github.com/icaruseffect/syncthing-ubuntu-indicator
+-  https://github.com/iss0/SyncthingTray
+-  https://github.com/bloones/SyncThingWin
+-  https://github.com/thunderbirdtr/syncthing_rpm
+-  https://copr.fedoraproject.org/coprs/tune2fs/syncthing/
+-  https://github.com/dapperstout/pulse-java
+-  https://github.com/cebe/pulse-php-discover
+-  https://bitbucket.org/StartledPhoenix/saltstack-syncthing

@@ -9,11 +9,6 @@ Building Syncthing
     of it. For all other purposes we recommend using the the official binary
     releases instead.
 
-.. note::
-    If you're on Linux and want the quickest possible start, check out
-    :ref:`building-with-docker`. Otherwise follow the guide below to set up the
-    development environment on your computer.
-
 Branches and Tags
 -----------------
 
@@ -28,14 +23,22 @@ may be unstable and unsuitable for general consumption.
 Prerequisites
 -------------
 
--  Go **1.3** or higher
+-  Go **1.5** or higher (1.7 or higher on Windows). We recommend the latest version.
 -  Git
 
-If you're not a Go developer since before, the easiest way to get going
+If you're not already a Go developer, the easiest way to get going
 is to download the latest version of Go as instructed in
 http://golang.org/doc/install and ``export GOPATH=~``.
 
-.. note:: You need to set ``GOPATH`` correctly and the source **must** be checked out into ``$GOPATH/src/github.com/syncthing/syncthing``. The instructions below accomplish this correctly.
+.. note::
+        You need to set ``GOPATH`` correctly and the source **must** be checked
+        out into ``$GOPATH/src/github.com/syncthing/syncthing``. The
+        instructions below accomplish this correctly.
+
+.. note::
+        We use Go 1.5+ vendoring for our dependencies. If you are using the
+        build script on Go 1.5 or higher this will just work. If you are
+        building manually on Go 1.5 you need to set ``GO15VENDOREXPERIMENT=1``.
 
 Building (Unix)
 ---------------
@@ -45,7 +48,7 @@ Building (Unix)
 
 .. code-block:: bash
 
-    # This should output "go version go1.3" or higher.
+    # This should output "go version go1.5" or higher.
     $ go version
 
     # Go is particular about file locations; use this path unless you know very
@@ -71,7 +74,7 @@ Building (Windows)
 -  Install the prerequisites.
 -  Open a ``cmd`` Window::
 
-    # This should output "go version go1.3" or higher.
+    # This should output "go version go1.7" or higher.
     > go version
 
     # Go is particular about file locations; use this path unless you know very
@@ -137,8 +140,6 @@ influence ``install``, ``build``, ``tar`` and ``zip``. Examples:
   Builds a zip distribution of Syncthing for Windows (current architecture) with
   upgrading disabled.
 
-.. note:: Building for a different operating system or architecture than your native one requires Go having been set up for cross compilation. The easiest way to get this right is to use the official Docker image, described below.
-
 Building without Git
 --------------------
 
@@ -156,29 +157,3 @@ well to prevent the built in upgrade system from being activated.
 ``go run build.go -version v0.10.26 -no-upgrade tar``
   Builds a tar.gz distribution of syncthing for the current OS/arch, tagged as
   ``v0.10.26``, with upgrades disabled.
-
-.. _building-with-docker:
-
-Building with Docker
---------------------
-
-The Docker based build image exactly replicates the official build
-process and is a quick way to get up and running with the full cross
-compiled setup. Start by getting the build image. It is fairly large
-(about 2 GiB).
-
-::
-
-    $ docker pull syncthing/build:latest
-
-Then check out and build Syncthing.
-
-::
-
-    $ git clone https://github.com/syncthing/syncthing
-    $ cd syncthing
-    $ ./build.sh docker-all
-
-A full build is done for all supported architectures, and tests are run.
-The process should end with a bunch of release files (``.tar.gz`` and
-``.zip``) created.

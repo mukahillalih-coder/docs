@@ -22,15 +22,19 @@ Communication in Syncthing works both ways. Therefore if you set up port
 forwards for one device, other devices will be able to connect to it even when
 they are behind a NAT network or firewall.
 
+In the absence of port forwarding, :ref:`relaying` may work well enough to get
+devices connected and synced, but will perform poorly in comparison to a
+direct connection.
+
 Local Firewall
 --------------
 
 If your PC has a local firewall, you will need to open the following ports for
-incoming traffic:
+incoming and outgoing traffic:
 
 -  Port **22000/TCP** (or the actual listening port if you have changed
    the *Sync Protocol Listen Address* setting.)
--  Port **21025/UDP** (for discovery broadcasts)
+-  Port **21027/UDP** (for discovery broadcasts on IPv4 and multicasts on IPv6)
 
 Remote Web GUI
 --------------
@@ -53,7 +57,7 @@ This will bind to your local port 9999 and forward all connections from there to
 port 8384 on the target machine. This still works even if Syncthing is bound to
 listen on localhost only.
 
-You can forward multiple ports corresponding to many machines this way, but
-because Syncthing uses session cookies for the entire domain (i.e. your local
-machine), you will need to connect to each control panel in a separate browser
-instance or explicitly issue a browser reload when switching between them.
+Via a Proxy
+-----------
+
+Syncthing can use a SOCKS5 proxy for outbound connections. Please see :ref:`proxying`.

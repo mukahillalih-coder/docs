@@ -4,10 +4,9 @@ Syncthing Development
 Controlling Syncthing from External Applications
 ------------------------------------------------
 
-The community has developed a number of `useful applications
-<https://github.com/syncthing/syncthing/wiki/Community-Contributions>`__ that
-build around the Syncthing core, such as tray notifications and Android
-support. These are made possible using two APIs:
+People all over the world have developed a number of :ref:`useful applications
+<contributions>` that build around the Syncthing core, such as tray
+notifications and Android support. These are made possible using two APIs:
 
 -  A long polling interface for exposing events from
    the core utility to an external party. This :ref:`event-api` is useful for being
@@ -41,10 +40,10 @@ the rest once you file a pull request.
 Source Code Layout
 ~~~~~~~~~~~~~~~~~~
 
-In the source repository you'll find a tree of various packages and directories. There is some Go code at the top level, but it's basically scripts for the build system. The actual code lives in the ``cmd/syncthing`` and ``internal`` directories. The web GUI lives in ``gui``. The rest is as follows.
-
-Godeps/
-   Locally vendored copies of external dependencies.
+In the source repository you'll find a tree of various packages and
+directories. There is some Go code at the top level, but it's basically scripts
+for the build system. The actual code lives in the ``cmd/syncthing`` and
+``lib`` directories. The web GUI lives in ``gui``. The rest is as follows.
 
 assets/
    Various graphical assets -- the logo.
@@ -88,7 +87,7 @@ etc/
 gui/
    The web GUI source. Gets compiled into the ``syncthing`` binary by way of ``genassets`` and the build process.
 
-internal/
+lib/
    Contains all packages that make up the parts of ``syncthing``.
 
    auto/
@@ -107,7 +106,7 @@ internal/
       The local and global device discovery -- maps device IDs to IP and port tuples.
 
    events/
-      The event subsystem, handles emitting of and subscribing to events accross the other packages.
+      The event subsystem, handles emitting of and subscribing to events across the other packages.
 
    fnmatch/
       Matches strings to glob patterns, used by the ignore package.
@@ -120,6 +119,12 @@ internal/
 
    osutil/
       Abstracts away certain OS specific quirks.
+
+   rc/
+      Remote controls a Syncthing process over the REST API.
+
+   protocol/
+      Implementation of the BEP protocol.
 
    scanner/
       Looks for changes to files and hashes them as appropriate.
@@ -151,8 +156,14 @@ pkg/
 protocol/
    Legacy location of the protocol package.
 
+script/
+   Various utility scripts for auto generating stuff and so on.
+
 test/
    The integration test suite.
+
+vendor/
+   Locally vendored copies of external dependencies.
 
 
 Why are you being so hard on my pull request?

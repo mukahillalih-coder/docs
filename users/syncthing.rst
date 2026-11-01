@@ -6,11 +6,10 @@ Synopsis
 
 ::
 
-    syncthing [-audit] [-generate=<dir>] [-gui-address=<address>]
-              [-gui-apikey=<key>] [-gui-authentication=<username:password>]
-              [-home=<dir>] [-logflags=<flags>] [-no-browser] [-no-restart]
-              [-reset] [-upgrade] [-upgrade-check] [-upgrade-to=<url>]
-              [-verbose] [-version]
+    syncthing [-audit] [-browser-only] [-generate=<dir>] [-gui-address=<address>] [-gui-apikey=<key>]
+              [-home=<dir>] [-logfile=<filename>] [-logflags=<flags>] [-no-browser]
+              [-no-console] [-no-restart] [-paths] [-paused] [-reset] [-upgrade] [-upgrade-check]
+              [-upgrade-to=<url>] [-verbose] [-version]
 
 Description
 -----------
@@ -37,18 +36,14 @@ Options
 
     Override GUI address.
 
-.. cmdoption:: -gui-apikey=<key>
-
-    Override GUI API key.
-
-.. cmdoption:: -gui-authentication=<username:password>
-
-    Override GUI authentication; username:password.
-
 .. cmdoption:: -home=<dir>
 
     Set configuration directory. The default configuration directory is:
     ``$HOME/.config/syncthing``.
+
+.. cmdoption:: -logfile=<filename>
+
+    Set destination filename for logging (use ``"-"`` for stdout, which is the default option).
 
 .. cmdoption:: -logflags=<flags>
 
@@ -69,9 +64,17 @@ Options
 
     Do not start a browser.
 
+.. cmdoption:: -no-console
+
+    Hide the console window. (On Windows only)
+
 .. cmdoption:: -no-restart
 
     Do not restart; just exit.
+
+.. cmdoption:: -paths
+
+    Print the paths used for configuration, keys, database, GUI overrides, default sync folder and the log file.
 
 .. cmdoption:: -reset
 
@@ -97,6 +100,13 @@ Options
 
     Show version.
 
+Deprecated Options
+------------------
+
+.. cmdoption:: -gui-apikey=<key>
+
+    Override GUI API key (deprecated as of v0.13, to be removed in the future - do not use).
+
 Exit Codes
 ----------
 
@@ -108,7 +118,7 @@ Exit Codes
     Upgrade not available
 3
     Restarting
-5
+4
     Upgrading
 
 Some of these exit codes are only returned when running without a monitor
@@ -122,7 +132,12 @@ Development Settings
 
 The following environment variables modify Syncthing's behavior in ways that
 are mostly useful for developers. Use with care.
+If you start syncthing from within service managers like systemd or supervisor
+path expansion may not be supported.
 
+STNODEFAULTFOLDER
+    Don't create a default folder when starting for the first time. This
+    variable will be ignored anytime after the first run.
 STGUIASSETS
     Directory to load GUI assets from. Overrides compiled in assets.
 STTRACE
@@ -162,17 +177,18 @@ STPROFILER
 STCPUPROFILE
     Write a CPU profile to cpu-$pid.pprof on exit.
 STHEAPPROFILE
-    Write heap profiles to heap-$pid-$timestamp.pprof each time heap usage
+    Write heap profiles to ``heap-$pid-$timestamp.pprof`` each time heap usage
     increases.
 STBLOCKPROFILE
     Write block profiles to ``block-$pid-$timestamp.pprof`` every 20 seconds.
 STPERFSTATS
-    Write running performance statistics to perf-$pid.csv. Not supported on
+    Write running performance statistics to ``perf-$pid.csv``. Not supported on
     Windows.
 STNOUPGRADE
     Disable automatic upgrades.
 GOMAXPROCS
-    Set the maximum number of CPU cores to use. Defaults to all available CPU cores.
+    Set the maximum number of CPU cores to use. Defaults to all available CPU
+    cores.
 GOGC
     Percentage of heap growth at which to trigger GC. Default is 100. Lower
     numbers keep peak memory usage down, at the price of CPU usage

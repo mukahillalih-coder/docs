@@ -22,7 +22,7 @@ Contact
   :ref:`project-presentation`.
 
 * To report bugs or request features, please use the `issue tracker`_ Before you
-  do so, make   sure you are running the `latest version`_, and please do a
+  do so, make sure you are running the `latest version`_, and please do a
   quick search to see if the issue has already been reported.
 
   .. image:: issues.png
@@ -57,9 +57,25 @@ can use the headings in the left sidebar to navigate the site.
    :glob:
 
    Command Line Operation <users/syncthing>
-   Configuration <users/config>
    users/faq
+
+   Configuration <users/config>
+   users/advanced
+   users/foldermaster
+
+   users/syncing
+
    users/firewall
+   users/relaying
+   users/proxying
+
+   users/ignoring
+   users/versioning
+
+   users/stdiscosrv
+   users/strelaysrv
+   users/custom-upgrades
+
    users/*
 
 .. toctree::
@@ -69,6 +85,14 @@ can use the headings in the left sidebar to navigate the site.
 
    Introduction <dev/intro>
    dev/*
+
+.. toctree::
+   :caption: Specifications
+   :maxdepth: 1
+   :glob:
+
+   specs/index.rst
+   specs/*
 
 .. _`contribution guidelines`: https://github.com/syncthing/syncthing/blob/master/CONTRIBUTING.md
 .. _Github: https://github.com/syncthing/docs

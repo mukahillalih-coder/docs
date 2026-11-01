@@ -1,5 +1,7 @@
-Folder Master
-=============
+.. _folder-master:
+
+Folder Master Configuration
+===========================
 
 A folder can be set in "master mode" among the folder settings.
 
@@ -18,7 +20,7 @@ button is shown at the bottom of the folder details.
 
 .. image:: override.png
 
-Clicking this button will make enforce the master's current state on the
+Clicking this button will enforce the master's current state on the
 rest of the cluster. Any changes made to files will be overwritten by
 the version on the master, any files that don't exist on the master will
 be deleted, and so on.

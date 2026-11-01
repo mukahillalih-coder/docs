@@ -2,7 +2,7 @@ GET /rest/db/file
 =================
 
 Returns most data available about a given file, including version and
-availability.
+availability. Takes ``folder`` and ``file`` parameters.
 
 .. code-block:: json
 
@@ -12,7 +12,7 @@ availability.
       ],
       "global": {
         "flags": "0644",
-        "localVersion": 3,
+        "sequence": 3,
         "modified": "2015-04-20T22:20:45+09:00",
         "name": "util.go",
         "numBlocks": 1,
@@ -23,7 +23,7 @@ availability.
       },
       "local": {
         "flags": "0644",
-        "localVersion": 4,
+        "sequence": 4,
         "modified": "2015-04-20T22:20:45+09:00",
         "name": "util.go",
         "numBlocks": 1,

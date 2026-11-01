@@ -23,7 +23,7 @@ Stopped
 	when the folder has experienced an error,
 
 Scanning
-	while the folder is looking for local changes,
+	while Syncthing is looking in the folder for local changes,
 
 Up to Date
 	when the folder is in sync with the rest of the cluster,
@@ -31,7 +31,7 @@ Up to Date
 Syncing
 	when this device is downloading changes from the network.
 
-Among the folder details, you can see the current "Global State" and "Local State" summaries, as well as the amount of "Out of Sync" data if the the folder state is not up to date.
+Among the folder details, you can see the current "Global State" and "Local State" summaries, as well as the amount of "Out of Sync" data if the folder state is not up to date.
 
 Global State
 	indicates how much data the fully up to date folder contains - this is basically the sum of the newest versions of all files from all connected devices. This is the size of the folder on your computer when it is fully in sync with the cluster.
@@ -40,7 +40,7 @@ Local State
 	shows how much data the folder actually contains right now. This can be more or less than the global state, if the folder is currently synchronizing with other devices.
 
 Out of Sync
-	shows how much data that needs to be synchronized from other devices. Note that this is the sum of all out of sync *files* - if you already have parts of such a file, or an older version of the file, less data than this will need to be transferred over the network.
+	shows how much data needs to be synchronized from other devices. Note that this is the sum of all out of sync *files* - if you already have parts of such a file, or an older version of the file, less data than this will need to be transferred over the network.
 
 Device View
 -----------

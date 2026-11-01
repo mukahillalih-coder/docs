@@ -1,8 +1,7 @@
+.. _versioning:
+
 File Versioning
 ===============
-
-.. todo::
-    External versioning needs example for Windows.
 
 Description
 -----------
@@ -64,9 +63,11 @@ that will be kept for each.
 30 Days
     For the first 30 days, the most recent version is kept every day.
 Until Maximum Age
+    Until maximum age, the most recent version is kept every week.
+Maximum Age
     The maximum time to keep a version in days. For example, to keep replaced or
     deleted files in the ".stversions" folder for an entire year, use 365. If
-    only or 10 days, use 10. **Note: Set to 0 to keep versions forever.**
+    only for 10 days, use 10. **Note: Set to 0 to keep versions forever.**
 
 External File Versioning
 ------------------------
@@ -98,7 +99,8 @@ the following script and store it as ``/Users/jb/bin/onlylatest.sh`` (i.e. the
     filepath="$2"
 
     # First ensure the dir where we need to store the file exists
-    mkdir -p `dirname "$versionspath/$filepath"`
+    outpath=`dirname "$versionspath/$filepath"`
+    mkdir -p "$outpath"
     # Then move the file there
     mv -f "$folderpath/$filepath" "$versionspath/$filepath"
 
@@ -115,3 +117,34 @@ script will be called as if I ran this from the command line::
 The script will then move the file in question to
 ``~/.trashcan/docs/letter.txt``, replacing any previous version of that letter
 that may already have been there.
+
+Example for Windows
+~~~~~~~~~~~~~~~~~~~
+
+On Windows we can use a batch script to perform the same "trash can"-like
+behavior as mentioned above. I created the following script and saved it as
+``C:\Users\mfrnd\Scripts\onlylatest.bat``.
+
+.. code-block:: batch
+
+    @echo off
+
+    :: We need command extensions for mkdir to create intermediate folders in one go
+    setlocal EnableExtensions
+    
+    :: Where I want my versions stored
+    set VERSIONS_PATH=%USERPROFILE%\.trashcan
+    
+    :: The parameters we get from Syncthing, '~' removes quotes if any
+    set FOLDER_PATH=%~1
+    set FILE_PATH=%~2
+    
+    :: First ensure the dir where we need to store the file exists
+    for %%F in ("%VERSIONS_PATH%\%FILE_PATH%") do set OUTPUT_PATH=%%~dpF
+    if not exist "%OUTPUT_PATH%" mkdir "%OUTPUT_PATH%" || exit /B
+    
+    :: Finally move the file, overwrite existing file if any
+    move /Y "%FOLDER_PATH%\%FILE_PATH%" "%VERSIONS_PATH%\%FILE_PATH%"
+
+Finally, I set ``C:\Users\mfrnd\Scripts\onlylatest.bat`` as command name in
+Syncthing.
